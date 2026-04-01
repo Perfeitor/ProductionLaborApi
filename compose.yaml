@@ -1,0 +1,7 @@
+﻿services:
+  productionlaborapi:
+    image: productionlaborapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+
