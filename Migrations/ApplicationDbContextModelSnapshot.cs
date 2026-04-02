@@ -59,11 +59,8 @@ namespace ProductionLaborApi.Migrations
 
             modelBuilder.Entity("ProductionLaborApi.Models.User", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -72,8 +69,6 @@ namespace ProductionLaborApi.Migrations
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.HasKey("Id");
 
                     b.ToTable("User");
                 });
@@ -101,6 +96,9 @@ namespace ProductionLaborApi.Migrations
                         .HasColumnType("date");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId", "WorkDate")
+                        .IsUnique();
 
                     b.ToTable("WorkLog");
                 });

@@ -1,13 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace ProductionLaborApi.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class reInitDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,14 +41,12 @@ namespace ProductionLaborApi.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<string>(type: "text", nullable: true),
                     Username = table.Column<string>(type: "text", nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,6 +64,12 @@ namespace ProductionLaborApi.Migrations
                 {
                     table.PrimaryKey("PK_WorkLog", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkLog_EmployeeId_WorkDate",
+                table: "WorkLog",
+                columns: new[] { "EmployeeId", "WorkDate" },
+                unique: true);
         }
 
         /// <inheritdoc />
