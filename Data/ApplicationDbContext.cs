@@ -9,7 +9,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Position> Positions { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<WorkLog> WorkLogs { get; set; }
-
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -32,6 +32,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder.Entity<User>(u =>
         {
             u.HasKey(x => x.Id);
+            u.HasIndex(x => x.Username).IsUnique();
         });
     }
 }
