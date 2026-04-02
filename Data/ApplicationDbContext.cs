@@ -18,6 +18,20 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             p.HasKey(x => x.Id);
         });
         
+        builder.Entity<Employee>(e =>
+        {
+            e.HasKey(x => x.Id);
+        });
+
+        builder.Entity<WorkLog>(e =>
+        {
+            e.HasKey(x => x.Id);
+            e.HasIndex(x => new { x.EmployeeId, x.WorkDate }).IsUnique();
+        });
         
+        builder.Entity<User>(u =>
+        {
+            u.HasNoKey();
+        });
     }
 }
