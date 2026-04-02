@@ -5,7 +5,7 @@ namespace ProductionLaborApi.Models;
 [Table("User")]
 public class User
 {
-    public long Id { get; set; }
-    public string Username { get; set; } = default!;
-    public string PasswordHash { get; set; } = default!;
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+    public required string Username { get; set; }
+    public required string PasswordHash { get; set; }
 }
