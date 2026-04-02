@@ -42,6 +42,9 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<WorklogService>();
+builder.Services.AddScoped<EmployeeService>();
+builder.Services.AddScoped<PositionService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

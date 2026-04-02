@@ -8,6 +8,7 @@ public class WorkLog
     public string Id { get; set; } = Guid.NewGuid().ToString();
 
     public required string EmployeeId { get; set; }
+    public string? PositionId { get; set; }
     public DateOnly WorkDate { get; set; }
 
     public decimal? Hours { get; set; } // số giờ

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProductionLaborApi.Services;
 
 namespace ProductionLaborApi.Controllers;
 
@@ -6,9 +7,15 @@ namespace ProductionLaborApi.Controllers;
 [Route("api/nhanvien")]
 public class EmployeesController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult GetAll()
+    private readonly EmployeeService _employeeService;
+    public EmployeesController(EmployeeService employeeService)
     {
-        return Ok("Hello World");
+        _employeeService = employeeService;
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetEmployees()
+    {
+        return Ok(await _employeeService.GetEmployees());
     }
 }
