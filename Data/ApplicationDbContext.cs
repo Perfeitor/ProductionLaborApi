@@ -31,7 +31,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         
         builder.Entity<User>(u =>
         {
-            u.HasNoKey();
+            u.HasKey(x => x.Id);
         });
     }
 }
